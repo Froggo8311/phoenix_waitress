@@ -151,30 +151,43 @@ def poll(timeout=0.0, map=None):
     if map is None:  # pragma: no cover
         map = socket_map
     if map:
-        r = []
-        w = []
-        e = []
-        for fd, obj in list(map.items()):  # list() call FBO py3
-            is_r = obj.readable()
-            is_w = obj.writable()
-            if is_r:
-                r.append(fd)
-            # accepting sockets should not be writable
-            if is_w and not obj.accepting:
-                w.append(fd)
-            if is_r or is_w:
-                e.append(fd)
-        if [] == r == w == e:
-            time.sleep(timeout)
-            return
+        fds = map.keys()
 
-        try:
-            r, w, e = select.select(r, w, e, timeout)
-        except OSError as err:
-            if err.args[0] != EINTR:
-                raise
-            else:
+        while True:
+            r = []
+            w = []
+            e = []
+            for fd in fds:
+                obj = map.get(fd)
+                if obj is None:  # pragma: no cover
+                    continue
+
+                is_r = obj.readable()
+                is_w = obj.writable()
+                if is_r:
+                    r.append(fd)
+                # accepting sockets should not be writable
+                if is_w and not obj.accepting:
+                    w.append(fd)
+                if is_r or is_w:
+                    e.append(fd)
+            if [] == r == w == e:
+                time.sleep(timeout)
                 return
+
+            try:
+                r, w, e = select.select(r, w, e, timeout)
+            except OSError as err:
+                if err.args[0] == EBADF:  # pragma: no cover
+                    if fds != map.keys():
+                        fds = map.keys()
+                        continue
+                if err.args[0] != EINTR:
+                    raise
+                else:
+                    return
+
+            break
 
         for fd in r:
             obj = map.get(fd)
