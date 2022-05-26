@@ -1,6 +1,6 @@
 import logging
 
-from waitress.server import create_server
+from pheonix_waitress.server import create_server
 
 
 def serve(app, **kw):

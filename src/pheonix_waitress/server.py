@@ -17,12 +17,12 @@ import os.path
 import socket
 import time
 
-from waitress import trigger
-from waitress.adjustments import Adjustments
-from waitress.channel import HTTPChannel
-from waitress.compat import IPPROTO_IPV6, IPV6_V6ONLY
-from waitress.task import ThreadedTaskDispatcher
-from waitress.utilities import cleanup_unix_socket
+from pheonix_waitress import trigger
+from pheonix_waitress.adjustments import Adjustments
+from pheonix_waitress.channel import HTTPChannel
+from pheonix_waitress.compat import IPPROTO_IPV6, IPV6_V6ONLY
+from pheonix_waitress.task import ThreadedTaskDispatcher
+from pheonix_waitress.utilities import cleanup_unix_socket
 
 from . import wasyncore
 from .proxy_headers import proxy_headers_middleware

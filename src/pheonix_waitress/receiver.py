@@ -14,8 +14,8 @@
 """Data Chunk Receiver
 """
 
-from waitress.rfc7230 import CHUNK_EXT_RE, ONLY_HEXDIG_RE
-from waitress.utilities import BadRequest, find_double_newline
+from pheonix_waitress.rfc7230 import CHUNK_EXT_RE, ONLY_HEXDIG_RE
+from pheonix_waitress.utilities import BadRequest, find_double_newline
 
 
 class FixedStreamReceiver:

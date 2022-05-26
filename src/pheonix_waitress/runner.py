@@ -22,9 +22,9 @@ import os.path
 import re
 import sys
 
-from waitress import serve
-from waitress.adjustments import Adjustments
-from waitress.utilities import logger
+from pheonix_waitress import serve
+from pheonix_waitress.adjustments import Adjustments
+from pheonix_waitress.utilities import logger
 
 HELP = """\
 Usage:

@@ -16,10 +16,10 @@ import threading
 import time
 import traceback
 
-from waitress.buffers import OverflowableBuffer, ReadOnlyFileBasedBuffer
-from waitress.parser import HTTPRequestParser
-from waitress.task import ErrorTask, WSGITask
-from waitress.utilities import InternalServerError
+from pheonix_waitress.buffers import OverflowableBuffer, ReadOnlyFileBasedBuffer
+from pheonix_waitress.parser import HTTPRequestParser
+from pheonix_waitress.task import ErrorTask, WSGITask
+from pheonix_waitress.utilities import InternalServerError
 
 from . import wasyncore
 

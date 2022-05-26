@@ -21,10 +21,10 @@ import re
 from urllib import parse
 from urllib.parse import unquote_to_bytes
 
-from waitress.buffers import OverflowableBuffer
-from waitress.receiver import ChunkedReceiver, FixedStreamReceiver
-from waitress.rfc7230 import HEADER_FIELD_RE, ONLY_DIGIT_RE
-from waitress.utilities import (
+from pheonix_waitress.buffers import OverflowableBuffer
+from pheonix_waitress.receiver import ChunkedReceiver, FixedStreamReceiver
+from pheonix_waitress.rfc7230 import HEADER_FIELD_RE, ONLY_DIGIT_RE
+from pheonix_waitress.utilities import (
     BadRequest,
     RequestEntityTooLarge,
     RequestHeaderFieldsTooLarge,
